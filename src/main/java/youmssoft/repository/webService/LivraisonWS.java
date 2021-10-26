@@ -36,7 +36,8 @@ import youmssoft.repository.services.ServicesVentes;
 
 //@Controller si on vas utiliser MVC(Application Web convensionnelle sans les servicesWeb)
 @RestController 
-@CrossOrigin("*")
+//@CrossOrigin("*")
+@CrossOrigin
 public class LivraisonWS {
 
 	@Autowired

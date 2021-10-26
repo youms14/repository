@@ -13,6 +13,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import youmssoft.repository.dao.RoleRepository;
 import youmssoft.repository.dao.UsersRepository;
 import youmssoft.repository.dao.livraison.CollaborateurExtRepository;
@@ -173,8 +176,19 @@ public class RepositoryApplication implements CommandLineRunner{
 	
 	public static void main(String[] args) {
 		SpringApplication.run(RepositoryApplication.class, args);
+
 	}
- 
+
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/authenticate").allowedOrigins("http://localhost:8080");
+				registry.addMapping("/user").allowedOrigins("http://localhost:8080");
+			}
+		};
+	}
 
 	@Override
 	public void run(String... args) throws Exception {

@@ -38,7 +38,8 @@ import youmssoft.repository.services.ServicesVentes;
 
 
 @RestController 
-@CrossOrigin("*")
+//@CrossOrigin("*")
+@CrossOrigin
 public class VentesWS {
 
 	

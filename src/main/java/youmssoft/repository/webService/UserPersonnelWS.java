@@ -35,7 +35,8 @@ import youmssoft.repository.services.ServicesVentes;
 
 @RestController 
 @Secured(value= {"ROLE_ADMIN"})
-@CrossOrigin("*")
+//@CrossOrigin("*")
+@CrossOrigin
 public class UserPersonnelWS {
 	@Autowired 
 	UsersRepository usersRepository;
@@ -207,27 +208,7 @@ public class UserPersonnelWS {
 		return r.getResponse();
 	}
 	
-	@RequestMapping(value="/getlogeduser")
-	public HashMap<String, Object> getLogedUser(HttpSession session){
-		SecurityContext securitycontex=(SecurityContext )session.getAttribute("SPRING_SECURITY_CONTEXT");
-		//On recupere l'utilisateur connecté
-		String username=securitycontex.getAuthentication().getName();
-		
-		//On récupère tous les rôles de l'utilisateur.
-		List<String> roles=new ArrayList<>();
-		for(GrantedAuthority ga:securitycontex.getAuthentication().getAuthorities()) {
-			roles.add(ga.getAuthority().substring(5));
-		}
-		
-		HashMap<String, Object> hm=new HashMap<>();
-			hm.put("username", username);
-			hm.put("roles", roles);
-			
-		return hm;
-		
-		
-	}
-	
+
 	
 	/*
 	 * les services concernants les roles ne sont pas aussi necessaires, vu que pour cette application,les roles sont les suivants:
